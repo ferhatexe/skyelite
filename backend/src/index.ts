@@ -40,10 +40,24 @@ app.get('/health', (req, res) => {
   res.json({ status: 'OK', timestamp: new Date() });
 });
 
-// Root welcome endpoint
-app.get('/', (req, res) => {
-  res.send('<h1>Kurye Takip API Servisi Aktif</h1><p>API endpointlerine erişmek için <b>/api</b> ön ekini kullanın. Harita paneli için lütfen frontend uygulamasını açın (port 5173).</p>');
-});
+// Serve frontend static build files in production
+if (env.NODE_ENV === 'production') {
+  const frontendDist = path.join(__dirname, '../../frontend/dist');
+  app.use(express.static(frontendDist));
+  
+  // React SPA router fallback
+  app.get('*', (req, res, next) => {
+    if (req.path.startsWith('/api')) {
+      return next();
+    }
+    res.sendFile(path.join(frontendDist, 'index.html'));
+  });
+} else {
+  // Root welcome endpoint (development only)
+  app.get('/', (req, res) => {
+    res.send('<h1>Kurye Takip API Servisi Aktif</h1><p>API endpointlerine erişmek için <b>/api</b> ön ekini kullanın. Harita paneli için lütfen frontend uygulamasını açın (port 5173).</p>');
+  });
+}
 
 // Global Error Handler
 app.use(errorHandler);
