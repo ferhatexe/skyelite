@@ -47,7 +47,7 @@ export const AdminDashboard: React.FC = () => {
   const [copiedCourierId, setCopiedCourierId] = useState<number | null>(null);
 
   // Custom Map Layer States
-  const [activeLayer, setActiveLayer] = useState<'google_street' | 'google_hybrid' | 'dark' | 'osm'>('google_street');
+  const [activeLayer, setActiveLayer] = useState<'google_street' | 'google_hybrid' | 'dark' | 'osm'>('dark');
   const [showLayersDropdown, setShowLayersDropdown] = useState(false);
 
   const [pullingCourierId, setPullingCourierId] = useState<number | null>(null);
@@ -298,7 +298,7 @@ export const AdminDashboard: React.FC = () => {
     const map = L.map(mapContainerRef.current, {
       zoomControl: false,
       attributionControl: true,
-      layers: [googleStreetLayer], // Start with Google Maps as default for highest accuracy
+      layers: [darkLayer], // Start with CartoDB Dark Matter to match the cyber aesthetic
       maxZoom: 21
     }).setView([DEFAULT_CENTER.lat, DEFAULT_CENTER.lng], 14); // Open closely on Prof. Dr. Necmettin Erbakan Parkı
 
@@ -452,7 +452,7 @@ export const AdminDashboard: React.FC = () => {
         }
       }
 
-      if (isCourierSelected && courier.accuracy) {
+      if (isCourierSelected && courier.accuracy && courier.accuracy < 3000) {
         if (accuracyCircleRef.current) {
           accuracyCircleRef.current.setLatLng(latLng);
           accuracyCircleRef.current.setRadius(courier.accuracy);
@@ -470,11 +470,14 @@ export const AdminDashboard: React.FC = () => {
             fillOpacity: 0.12
           }).addTo(map);
         }
+      } else if (isCourierSelected && accuracyCircleRef.current) {
+        accuracyCircleRef.current.remove();
+        accuracyCircleRef.current = null;
       }
     });
 
     const selectedCourier = couriers.find(c => c.id === selectedCourierId);
-    if ((!selectedCourierId || !selectedCourier || !selectedCourier.latitude || !selectedCourier.accuracy) && accuracyCircleRef.current) {
+    if ((!selectedCourierId || !selectedCourier || !selectedCourier.latitude || !selectedCourier.accuracy || selectedCourier.accuracy >= 3000) && accuracyCircleRef.current) {
       accuracyCircleRef.current.remove();
       accuracyCircleRef.current = null;
     }
