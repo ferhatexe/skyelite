@@ -15,7 +15,10 @@ import {
   Compass, 
   Zap,
   Navigation,
-  RefreshCw
+  RefreshCw,
+  Menu,
+  X,
+  Activity
 } from 'lucide-react';
 
 const DEFAULT_CENTER = {
@@ -49,6 +52,8 @@ export const AdminDashboard: React.FC = () => {
   // Custom Map Layer States
   const [activeLayer, setActiveLayer] = useState<'google_street' | 'google_hybrid' | 'dark' | 'osm'>('dark');
   const [showLayersDropdown, setShowLayersDropdown] = useState(false);
+  const [showMobileList, setShowMobileList] = useState(false);
+  const [showMobileDetails, setShowMobileDetails] = useState(false);
 
   const [pullingCourierId, setPullingCourierId] = useState<number | null>(null);
 
@@ -124,6 +129,8 @@ export const AdminDashboard: React.FC = () => {
   const selectCourier = (courier: Courier) => {
     selectedCourierIdRef.current = courier.id;
     setSelectedCourierId(courier.id);
+    setShowMobileList(false);
+    setShowMobileDetails(true);
     if (courier.latitude && courier.longitude) {
       const pos: L.LatLngExpression = [courier.latitude, courier.longitude];
       if (mapRef.current) {
@@ -588,46 +595,59 @@ export const AdminDashboard: React.FC = () => {
       </main>
 
       {/* FLOATING HEADER */}
-      <header className="absolute top-4 left-4 right-4 z-[1000] glass-card px-6 py-3.5 rounded-[20px] border border-white/5 flex items-center justify-between shadow-2xl">
-        <div className="flex items-center space-x-3">
-          <div className="w-10 h-10 bg-primary-500/10 border border-primary-500/25 rounded-xl flex items-center justify-center relative overflow-hidden group">
+      <header className="absolute top-4 left-4 right-4 z-[1000] glass-card px-4 md:px-6 py-2.5 md:py-3.5 rounded-[20px] border border-white/5 flex items-center justify-between shadow-2xl">
+        <div className="flex items-center space-x-2 md:space-x-3">
+          <div className="w-8 h-8 md:w-10 md:h-10 bg-primary-500/10 border border-primary-500/25 rounded-xl flex items-center justify-center relative overflow-hidden group shrink-0">
             {/* Spinning glowing compass arrow */}
-            <Compass className="w-5 h-5 text-primary-400 group-hover:rotate-180 transition-transform duration-700" />
+            <Compass className="w-4.5 h-4.5 md:w-5 md:h-5 text-primary-400 group-hover:rotate-180 transition-transform duration-700" />
             <div className="absolute inset-0 bg-primary-500/5 group-hover:animate-pulse"></div>
           </div>
           <div>
-            <h1 className="text-sm font-bold text-white tracking-wide">Yönetici Canlı Takip Konsolu</h1>
-            <p className="text-[10px] text-slate-400 font-semibold tracking-wider uppercase">Sistem Telemetrisi</p>
+            <h1 className="text-xs md:text-sm font-bold text-white tracking-wide">Canlı Takip</h1>
+            <p className="hidden md:block text-[10px] text-slate-400 font-semibold tracking-wider uppercase">Sistem Telemetrisi</p>
           </div>
         </div>
 
-        <div className="flex items-center space-x-4">
+        <div className="flex items-center space-x-2 md:space-x-4">
           {/* Socket Connection Badge */}
           {isConnected ? (
-            <span className="inline-flex items-center px-3 py-1 rounded-full text-[10px] font-bold bg-emerald-500/10 border border-emerald-500/20 text-emerald-450 tracking-wider uppercase">
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-450 mr-2 shadow-lg shadow-emerald-450/50 animate-pulse"></span>
-              BAĞLANTI AKTİF
+            <span className="inline-flex items-center px-2 md:px-3 py-1 rounded-full text-[9px] md:text-[10px] font-bold bg-emerald-500/10 border border-emerald-500/20 text-emerald-450 tracking-wider uppercase">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-450 mr-1.5 md:mr-2 shadow-lg shadow-emerald-450/50 animate-pulse"></span>
+              <span className="hidden sm:inline">BAĞLANTI AKTİF</span>
+              <span className="sm:hidden">AKTİF</span>
             </span>
           ) : (
-            <span className="inline-flex items-center px-3 py-1 rounded-full text-[10px] font-bold bg-red-500/10 border border-red-500/20 text-red-450 tracking-wider uppercase">
-              <span className="w-1.5 h-1.5 rounded-full bg-red-450 mr-2 animate-pulse"></span>
-              BAĞLANTI YOK
+            <span className="inline-flex items-center px-2 md:px-3 py-1 rounded-full text-[9px] md:text-[10px] font-bold bg-red-500/10 border border-red-500/20 text-red-450 tracking-wider uppercase">
+              <span className="w-1.5 h-1.5 rounded-full bg-red-450 mr-1.5 md:mr-2 animate-pulse"></span>
+              <span className="hidden sm:inline">BAĞLANTI YOK</span>
+              <span className="sm:hidden">YOK</span>
             </span>
           )}
 
           {/* Logout Button */}
           <button
             onClick={logout}
-            className="flex items-center space-x-2 py-2 px-3 bg-slate-950/60 hover:bg-slate-900 border border-slate-850 rounded-xl text-slate-405 hover:text-white transition-all text-xs font-bold uppercase tracking-wider shadow-sm"
+            className="flex items-center space-x-1.5 py-1.5 md:py-2 px-2.5 md:px-3 bg-slate-950/60 hover:bg-slate-900 border border-slate-850 rounded-xl text-slate-405 hover:text-white transition-all text-xs font-bold uppercase tracking-wider shadow-sm"
           >
             <LogOut className="w-3.5 h-3.5" />
-            <span>ÇIKIŞ</span>
+            <span className="hidden xs:inline">ÇIKIŞ</span>
           </button>
         </div>
       </header>
 
       {/* FLOATING LEFT SIDEBAR */}
-      <aside className="absolute top-24 left-4 bottom-4 z-[1000] w-96 glass-card rounded-[24px] border border-white/5 flex flex-col overflow-hidden shadow-2xl transition-all duration-300">
+      <aside className={`fixed md:absolute top-20 md:top-24 left-4 right-4 md:right-auto bottom-24 md:bottom-4 z-[1000] w-auto md:w-96 glass-card rounded-[24px] border border-white/5 flex flex-col overflow-hidden shadow-2xl transition-all duration-300 ${showMobileList ? 'flex' : 'hidden md:flex'}`}>
+        
+        {/* Mobile Header / Close Button */}
+        <div className="md:hidden flex items-center justify-between px-5 py-3 border-b border-slate-900/60 bg-slate-950/40 shrink-0">
+          <span className="text-xs font-bold text-white uppercase tracking-wider">Birim Seçimi</span>
+          <button
+            onClick={() => setShowMobileList(false)}
+            className="p-1 text-slate-400 hover:text-white rounded-lg transition-all"
+          >
+            <X className="w-5 h-5" />
+          </button>
+        </div>
         
         {/* Tracking Link Panel */}
         <div className="p-5 border-b border-slate-900/60 bg-slate-950/30 space-y-2.5">
@@ -852,7 +872,18 @@ export const AdminDashboard: React.FC = () => {
 
       {/* FLOATING TELEMETRY COCKPIT (RIGHT SIDE) */}
       {selectedCourier && (
-        <aside className="absolute top-24 right-16 bottom-4 z-[1000] w-80 glass-card rounded-[24px] border border-white/5 flex flex-col overflow-hidden shadow-2xl p-5 space-y-5">
+        <aside className={`fixed md:absolute top-20 md:top-24 left-4 md:left-auto right-4 md:right-16 bottom-24 md:bottom-4 z-[1000] w-auto md:w-80 glass-card rounded-[24px] border border-white/5 flex flex-col overflow-hidden shadow-2xl p-5 space-y-5 transition-all duration-300 ${showMobileDetails ? 'flex' : 'hidden md:flex'}`}>
+          
+          {/* Mobile Header / Close Button */}
+          <div className="md:hidden flex items-center justify-between border-b border-slate-900/60 pb-3 shrink-0">
+            <span className="text-xs font-bold text-white uppercase tracking-wider">Birim Bilgileri</span>
+            <button
+              onClick={() => setShowMobileDetails(false)}
+              className="p-1 text-slate-400 hover:text-white rounded-lg transition-all"
+            >
+              <X className="w-5 h-5" />
+            </button>
+          </div>
           <div className="flex justify-between items-start border-b border-slate-900/60 pb-3">
             <div>
               <div className="flex items-center space-x-2">
@@ -1013,6 +1044,33 @@ export const AdminDashboard: React.FC = () => {
 
         </aside>
       )}
+
+      {/* Floating Mobile Navigation Bar */}
+      <div className="md:hidden fixed bottom-6 left-1/2 -translate-x-1/2 z-[1001] flex items-center space-x-2 bg-slate-950/80 backdrop-blur-md border border-white/10 px-4 py-2.5 rounded-full shadow-2xl">
+        <button
+          onClick={() => {
+            setShowMobileList(true);
+            setShowMobileDetails(false);
+          }}
+          className="flex items-center space-x-1.5 px-3.5 py-2 bg-slate-900 hover:bg-slate-850 rounded-full text-xs font-bold text-sky-400 border border-sky-500/20"
+        >
+          <Menu className="w-3.5 h-3.5" />
+          <span>BİRİMLER ({filteredCouriers.length})</span>
+        </button>
+
+        {selectedCourierId && (
+          <button
+            onClick={() => {
+              setShowMobileDetails(true);
+              setShowMobileList(false);
+            }}
+            className="flex items-center space-x-1.5 px-3.5 py-2 bg-slate-900 hover:bg-slate-850 rounded-full text-xs font-bold text-emerald-450 border border-emerald-500/20"
+          >
+            <Activity className="w-3.5 h-3.5" />
+            <span>DETAYLAR</span>
+          </button>
+        )}
+      </div>
 
     </div>
   );
