@@ -277,29 +277,33 @@ export const AdminDashboard: React.FC = () => {
     // Define different base layers including Google Maps
     const googleStreetLayer = L.tileLayer('https://mt1.google.com/vt/lyrs=m&x={x}&y={y}&z={z}&hl=tr', {
       attribution: '&copy; <a href="https://maps.google.com">Google Maps</a>',
-      maxZoom: 21
+      maxZoom: 22,
+      maxNativeZoom: 22
     });
 
     const googleHybridLayer = L.tileLayer('https://mt1.google.com/vt/lyrs=y&x={x}&y={y}&z={z}&hl=tr', {
       attribution: '&copy; <a href="https://maps.google.com">Google Maps</a>',
-      maxZoom: 21
+      maxZoom: 22,
+      maxNativeZoom: 22
     });
 
     const darkLayer = L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
       attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
-      maxZoom: 20
+      maxZoom: 22,
+      maxNativeZoom: 20
     });
 
     const streetLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-      maxZoom: 19
+      maxZoom: 22,
+      maxNativeZoom: 19
     });
 
     const map = L.map(mapContainerRef.current, {
       zoomControl: false,
       attributionControl: true,
       layers: [darkLayer], // Start with CartoDB Dark Matter to match the cyber aesthetic
-      maxZoom: 21
+      maxZoom: 22
     }).setView([DEFAULT_CENTER.lat, DEFAULT_CENTER.lng], 14); // Open closely on Prof. Dr. Necmettin Erbakan Parkı
 
     // Save references to layers for React-driven switching
