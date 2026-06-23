@@ -17,7 +17,9 @@ import path from 'path';
 const app = express();
 
 // Setup security headers
-app.use(helmet());
+app.use(helmet({
+  contentSecurityPolicy: false,
+}));
 
 // Enable CORS
 app.use(cors({
