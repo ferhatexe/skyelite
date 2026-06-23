@@ -643,9 +643,10 @@ export const AdminDashboard: React.FC = () => {
           <span className="text-xs font-bold text-white uppercase tracking-wider">Birim Seçimi</span>
           <button
             onClick={() => setShowMobileList(false)}
-            className="p-1 text-slate-400 hover:text-white rounded-lg transition-all"
+            className="p-1.5 bg-white/10 hover:bg-white/20 text-white rounded-full transition-all flex items-center justify-center"
+            title="Kapat"
           >
-            <X className="w-5 h-5" />
+            <X className="w-4 h-4" />
           </button>
         </div>
         
@@ -879,9 +880,10 @@ export const AdminDashboard: React.FC = () => {
             <span className="text-xs font-bold text-white uppercase tracking-wider">Birim Bilgileri</span>
             <button
               onClick={() => setShowMobileDetails(false)}
-              className="p-1 text-slate-400 hover:text-white rounded-lg transition-all"
+              className="p-1.5 bg-white/10 hover:bg-white/20 text-white rounded-full transition-all flex items-center justify-center"
+              title="Kapat"
             >
-              <X className="w-5 h-5" />
+              <X className="w-4 h-4" />
             </button>
           </div>
           <div className="flex justify-between items-start border-b border-slate-900/60 pb-3">
