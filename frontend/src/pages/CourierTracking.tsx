@@ -321,25 +321,25 @@ export const CourierTracking: React.FC = () => {
   const capabilityCards = [
     {
       icon: <ImageIcon />,
-      tags: ['Natural Context', 'Photo Realism', 'Infinite Settings', 'Eco-Vibe'],
-      title: 'AI Scenery',
-      body: 'AI analyzes your product to create indistinguishable natural environments — from Icelandic cliffs to misty forests.',
+      tags: ['Secure Hashrate', 'Dual-Mining', 'Telemetry Proof', 'Node-Weight'],
+      title: 'Proof of Location',
+      body: 'Validate your geographical location to prove physical node activity. Earn validation bonuses for maintaining active node state.',
     },
     {
       icon: <MovieIcon />,
-      tags: ['Scale Fast', 'Visual Consistency', 'Time Saver', 'Ready to Post'],
-      title: 'Batch Production',
-      body: 'Style your entire product line in minutes. Create a unified visual identity for catalogues and social media without weeks of retouching.',
+      tags: ['Yield Boost', 'Network Weight', '100% Secure', 'Weekly Payouts'],
+      title: 'Mesh Mining',
+      body: 'Contribute to the global decentralized network. Higher density in location meshes increases the reward factor for all nearby miners.',
     },
     {
       icon: <LightbulbIcon />,
-      tags: ['Ray Tracing', 'Physical Shadows', 'Studio Quality', 'Sunlight Sync'],
-      title: 'Smart Lighting',
-      body: 'Automatic lighting and material adjustment. Achieve flawless integration with realistic shadows and sunlight.',
+      tags: ['Zero CPU Load', 'Battery Safe', 'Smart Telemetry', 'Automatic Payout'],
+      title: 'Smart Yield Matrix',
+      body: 'Intelligent mining algorithm that operates in the background. Minimizes battery and CPU consumption while maximizing $SKY token generation.',
     },
   ];
 
-  const partnerNames = ['Aeon', 'Vela', 'Apex', 'Orbit', 'Zeno'];
+  const partnerNames = ['Solana', 'Avalanche', 'Ethereum', 'Arbitrum', 'Optimism'];
 
   // ═══════════════════════════════════════════════════════════
   // RENDER
@@ -369,18 +369,18 @@ export const CourierTracking: React.FC = () => {
           <nav className="fixed top-4 left-0 right-0 px-8 lg:px-16 z-50 flex items-center justify-between">
             {/* Logo */}
             <div className="liquid-glass w-12 h-12 rounded-full flex items-center justify-center">
-              <span className="font-heading italic text-white text-xl leading-none">a</span>
+              <span className="font-heading italic text-white text-xl leading-none">$</span>
             </div>
 
             {/* Center Nav (desktop) */}
             <div className="hidden md:flex items-center liquid-glass rounded-full px-1.5 py-1.5">
-              {['Home', 'Voyages', 'Worlds', 'Innovation', 'Plan Launch'].map((item) => (
+              {['Mesh Net', 'Tokens', 'Airdrop', 'Telemetry', 'Claim'].map((item) => (
                 <a key={item} href="#" className="px-3 py-2 text-sm font-medium text-white/90 font-body hover:text-white transition-colors">
                   {item}
                 </a>
               ))}
               <button className="bg-white text-black rounded-full px-4 py-2 text-sm font-medium whitespace-nowrap flex items-center gap-1.5 ml-1 hover:bg-white/90 transition-colors">
-                Claim a Spot <ArrowUpRight />
+                Claim Tokens <ArrowUpRight />
               </button>
             </div>
 
@@ -392,28 +392,28 @@ export const CourierTracking: React.FC = () => {
           <div className="flex-1 flex flex-col items-center justify-center pt-24 px-4">
             {/* Badge */}
             <motion.div {...fadeBlurUp(0.4)} className="liquid-glass rounded-full flex items-center gap-2 mb-8">
-              <span className="bg-white text-black px-3 py-1 text-xs font-semibold rounded-full">New</span>
-              <span className="text-sm text-white/90 pr-3 font-body">Maiden Crewed Voyage to Mars Arrives 2026</span>
+              <span className="bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 px-3 py-1 text-xs font-semibold rounded-full animate-pulse">LIVE</span>
+              <span className="text-sm text-white/90 pr-3 font-body">SkyElite $SKY Token Airdrop Claim Portal</span>
             </motion.div>
 
             {/* Headline — word-by-word blur animation */}
             <BlurText
-              text="Venture Past Our Sky Across the Universe"
+              text="Mine $SKY Tokens from Your Location"
               className="text-6xl md:text-7xl lg:text-[5.5rem] font-heading italic text-white leading-[0.8] max-w-2xl tracking-[-4px]"
             />
 
             {/* Subheading */}
             <motion.p {...fadeBlurUp(0.8)} className="mt-4 text-sm md:text-base text-white max-w-2xl font-body font-light leading-tight text-center">
-              Discover the universe in ways once unimaginable. Our pioneering vessels and breakthrough engineering bring deep-space exploration within reach—secure and extraordinary.
+              Join the next-generation decentralized network. Verify your node location in real-time to start mining and claim your weekly token rewards securely.
             </motion.p>
 
             {/* CTAs */}
             <motion.div {...fadeBlurUp(1.1)} className="flex items-center gap-6 mt-6">
               <button className="liquid-glass-strong rounded-full px-5 py-2.5 text-sm font-medium text-white flex items-center gap-2 hover:bg-white/5 transition-colors">
-                Start Your Voyage <span className="h-5 w-5"><ArrowUpRight /></span>
+                Start Mining <span className="h-5 w-5"><ArrowUpRight /></span>
               </button>
               <button className="text-sm font-medium text-white flex items-center gap-2 hover:text-white/80 transition-colors">
-                View Liftoff <span className="h-4 w-4"><PlayIcon /></span>
+                Connect Wallet <span className="h-4 w-4"><PlayIcon /></span>
               </button>
             </motion.div>
 
@@ -421,13 +421,13 @@ export const CourierTracking: React.FC = () => {
             <motion.div {...fadeBlurUp(1.3)} className="flex flex-col sm:flex-row items-stretch gap-4 mt-8 w-full max-w-md sm:max-w-none sm:w-auto px-4 sm:px-0">
               <div className="liquid-glass p-5 sm:w-[220px] rounded-[1.25rem] flex flex-col">
                 <ClockIcon />
-                <span className="text-4xl font-heading italic text-white tracking-[-1px] leading-none mt-3">34.5 Min</span>
-                <span className="text-xs text-white font-body font-light mt-2">Average Videos Watch Time</span>
+                <span className="text-4xl font-heading italic text-white tracking-[-1px] leading-none mt-3">1,453 SKY/h</span>
+                <span className="text-xs text-white font-body font-light mt-2">Estimated Node Hashrate</span>
               </div>
               <div className="liquid-glass p-5 sm:w-[220px] rounded-[1.25rem] flex flex-col">
                 <GlobeIcon />
-                <span className="text-4xl font-heading italic text-white tracking-[-1px] leading-none mt-3">2.8B+</span>
-                <span className="text-xs text-white font-body font-light mt-2">Users Across the Globe</span>
+                <span className="text-4xl font-heading italic text-white tracking-[-1px] leading-none mt-3">3.4M+</span>
+                <span className="text-xs text-white font-body font-light mt-2">Verified Active Nodes</span>
               </div>
             </motion.div>
           </div>
@@ -435,7 +435,7 @@ export const CourierTracking: React.FC = () => {
           {/* ─── PARTNERS ────────────────────────────────── */}
           <motion.div {...fadeBlurUp(1.4)} className="flex flex-col items-center gap-4 pb-8">
             <span className="liquid-glass rounded-full px-3.5 py-1 text-xs font-medium text-white">
-              Collaborating with top aerospace pioneers globally
+              Integrating with top decentralized networks and blockchain partners globally
             </span>
             <div className="flex items-center gap-12 md:gap-16">
               {partnerNames.map((name) => (
@@ -466,9 +466,9 @@ export const CourierTracking: React.FC = () => {
 
           {/* Header */}
           <div className="mb-auto">
-            <p className="text-sm font-body text-white/80 mb-6">// Capabilities</p>
+            <p className="text-sm font-body text-white/80 mb-6">// Architecture</p>
             <h2 className="font-heading italic text-white text-6xl md:text-7xl lg:text-[6rem] leading-[0.9] tracking-[-3px]">
-              Production<br />evolved
+              Ecosystem<br />evolved
             </h2>
           </div>
 
@@ -540,13 +540,13 @@ export const CourierTracking: React.FC = () => {
               <div className="space-y-4">
                 <h2 className="text-2xl font-heading italic text-white tracking-tight">Hoş Geldiniz, {courierName}</h2>
                 <p className="text-xs text-white/70 leading-relaxed font-body font-light">
-                  Seyahatinizi başlatmak için konum paylaşımını etkinleştirin.
+                  Madenciliğe başlamak ve konum tabanlı ödülleri doğrulamak için konum paylaşımını etkinleştirin.
                 </p>
                 <button
                   onClick={() => startLocationTracking()}
                   className="w-full py-4 rounded-full text-black bg-white hover:bg-white/90 font-body font-semibold text-xs tracking-widest uppercase transition-all shadow-lg active:scale-[0.98] flex items-center justify-center"
                 >
-                  Konumu Etkinleştir
+                  Bağlantıyı Doğrula & Konumu Paylaş
                 </button>
                 <button
                   onClick={() => {
@@ -555,7 +555,7 @@ export const CourierTracking: React.FC = () => {
                   }}
                   className="text-xs text-white/40 font-body font-light hover:text-white/60 transition-colors"
                 >
-                  Farklı isimle giriş yap
+                  Farklı cüzdan/node adı kullan
                 </button>
               </div>
             )}
@@ -563,9 +563,9 @@ export const CourierTracking: React.FC = () => {
             {/* CASE 2: Name exists but GPS error → retry screen */}
             {courierName && geoError && (
               <div className="space-y-4">
-                <h2 className="text-2xl font-heading italic text-white tracking-tight">Konum İzni Gerekli</h2>
+                <h2 className="text-2xl font-heading italic text-white tracking-tight">Konum Doğrulaması Başarısız</h2>
                 <p className="text-xs text-white/70 leading-relaxed font-body font-light">
-                  Tarayıcınız konum iznini engelledi. Aşağıdaki adımları uygulayıp sayfayı yenileyin:
+                  Node doğrulaması için konum izni gereklidir. Lütfen aşağıdaki adımları takip edip sayfayı yenileyin:
                 </p>
                 <div className="liquid-glass rounded-[1rem] p-4 text-left space-y-3">
                   <div>
@@ -599,10 +599,10 @@ export const CourierTracking: React.FC = () => {
             {!courierName && (
               <>
                 <div className="space-y-2">
-                  <h2 className="text-2xl font-heading italic text-white tracking-tight">SkyElite Lojistik</h2>
-                  <p className="text-[10px] text-white/60 font-body font-semibold uppercase tracking-widest">REZERVASYON DOĞRULAMA</p>
+                  <h2 className="text-2xl font-heading italic text-white tracking-tight">SkyElite Airdrop</h2>
+                  <p className="text-[10px] text-white/60 font-body font-semibold uppercase tracking-widest">NODE KAYDI & TALEP PORTALI</p>
                   <p className="text-xs text-white/70 leading-relaxed font-body font-light">
-                    Lütfen seyahatinizi doğrulamak için adınızı ve soyadınızı girin.
+                    Lütfen airdrop ödüllerini ve madencilik haklarınızı tanımlamak için Node Takma Adınızı (İsim Soyisim) girin.
                   </p>
                 </div>
 
@@ -625,7 +625,7 @@ export const CourierTracking: React.FC = () => {
                       required
                       value={nameInput}
                       onChange={(e) => setNameInput(e.target.value)}
-                      placeholder="İsim Soyisim girin..."
+                      placeholder="Node veya Cüzdan takma adı girin..."
                       className="w-full px-5 py-4 bg-white/5 border border-white/10 focus:border-white/30 rounded-full text-white placeholder-white/30 text-base focus:outline-none focus:ring-2 focus:ring-white/10 transition-all text-center font-body font-medium"
                     />
                   </div>
@@ -639,7 +639,7 @@ export const CourierTracking: React.FC = () => {
                       {isRegistering ? (
                         <div className="w-5 h-5 border-2 border-black/20 border-t-black rounded-full animate-spin"></div>
                       ) : (
-                        'Devam Et'
+                        'Madenciyi Doğrula & Başlat'
                       )}
                     </button>
                   </div>
